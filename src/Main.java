@@ -1,15 +1,58 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Scanner input = new Scanner(System.in);
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        double a, b, c, delta, x1, x2;
+        int roots;
+
+        System.out.print("Enter a, b and c: ");
+        a = input.nextDouble();
+        b = input.nextDouble();
+        c = input.nextDouble();
+
+        if (a == 0) {
+            System.out.println("Error: a cannot be zero.");
+            input.close();
+            return;
         }
+
+        delta = b * b - 4 * a * c;
+
+        if (delta > 0) {
+            roots = 2;
+        } else if (delta == 0) {
+            roots = 1;
+        } else {
+            roots = 0;
+        }
+
+        System.out.printf("a = %.2f%n", a);
+        System.out.printf("b = %.2f%n", b);
+        System.out.printf("c = %.2f%n", c);
+
+        switch (roots) {
+            case 2:
+                x1 = (-b + Math.sqrt(delta)) / (2 * a);
+                x2 = (-b - Math.sqrt(delta)) / (2 * a);
+
+                System.out.printf("x1 = %.2f%n", x1);
+                System.out.printf("x2 = %.2f%n", x2);
+                break;
+
+            case 1:
+                x1 = -b / (2 * a);
+
+                System.out.printf("x1 = %.2f%n", x1);
+                break;
+
+            case 0:
+                System.out.println("No real roots.");
+                break;
+        }
+
+        input.close();
     }
 }
